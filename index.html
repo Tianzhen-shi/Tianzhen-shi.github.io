@@ -160,95 +160,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-day5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>熟悉log4cpp的用法，动手敲代码</p>
-<p> <a href="http://blog.csdn.net/liuhong135541/article/category/1496383" target="_blank" rel="noopener">http://blog.csdn.net/liuhong135541/article/category/1496383</a></p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/Category.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/Priority.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/OstreamAppender.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/PatternLayout.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/FileAppender.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/RollingFileAppender.hh&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> log4cpp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//输出布局</span></span><br><span class="line">    PatternLayout *ptnLayout1 = <span class="keyword">new</span> PatternLayout();</span><br><span class="line">    ptnLayout1-&gt;setConversionPattern(<span class="string">"%d %c (%p) %m%n"</span>);</span><br><span class="line">    PatternLayout *ptnLayout2 = <span class="keyword">new</span> PatternLayout();</span><br><span class="line">    ptnLayout2-&gt;setConversionPattern(<span class="string">"%d %c (%p) %m%n"</span>);</span><br><span class="line">    PatternLayout *ptnLayout3 = <span class="keyword">new</span> PatternLayout();</span><br><span class="line">    ptnLayout3-&gt;setConversionPattern(<span class="string">"%d %c (%p) %m%n"</span>);</span><br><span class="line"></span><br><span class="line">    RollingFileAppender *rollingFileAppender = <span class="keyword">new</span> RollingFileAppender(</span><br><span class="line">        <span class="string">"rollingFileAppender"</span>,</span><br><span class="line">        <span class="string">"rollingwangdao.log"</span>,</span><br><span class="line">        <span class="number">1024</span>,</span><br><span class="line">        <span class="number">5</span>);</span><br><span class="line">    rollingFileAppender-&gt;setAppend(ptnLayout3);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出控制</span></span><br><span class="line">    OstreamAppender *ostreamAppender = <span class="keyword">new</span> OstreamAppender(<span class="string">"OstreamAppender"</span>, &amp;<span class="built_in">cout</span>);</span><br><span class="line">    ostreamAppender-&gt;setLayout(ptnLayout1);</span><br><span class="line">    FileAppender *fileappender = <span class="keyword">new</span> FileAppender(<span class="string">"fileAppender"</span>, <span class="string">"wangdao.log"</span>);</span><br><span class="line">    fileappender-&gt;setLayout(ptnLayout2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//建立日志记录器，过滤器</span></span><br><span class="line">    Category &amp;mycategory = Category::getRoot().getInstance(<span class="string">"mycategory"</span>);</span><br><span class="line">    mycategory.setPriority(Priority::DEBUG);</span><br><span class="line">    mycategory.addAppender(ostreamAppender);</span><br><span class="line">    mycategory.addAppender(fileappender);</span><br><span class="line">    mycategory.addAppender(rollingFileAppender);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> idx = <span class="number">0</span>; idx != <span class="number">100</span>; ++idx)</span><br><span class="line">    &#123;</span><br><span class="line">        mycategory.alert(<span class="string">"%d this is alert"</span>, idx);</span><br><span class="line">        mycategory.crit(<span class="string">"this is crit"</span>);</span><br><span class="line">        mycategory.error(<span class="string">"this is error"</span>);</span><br><span class="line">        mycategory.warn(<span class="string">"this is warn"</span>);</span><br><span class="line">        mycategory.info(<span class="string">"this is info"</span>);</span><br><span class="line">        mycategory.notice(<span class="string">"this is notice"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>封装log4cpp,使用起来比较方便，如下所示。</p>
-<p>输出的日志信息能同时输出到终端和文件</p>
-<pre><code>int main(void)
-{
-    cout &lt;&lt; &quot;hello,world&quot;&lt;&lt;endl;
-
-    LogInfo(&quot;Message&quot;);    //或者   
-    LogError(&quot;Message&quot;);
-    LogWarn(&quot;Message&quot;);
-    LogDebug(&quot;Message&quot;);
-}</code></pre><p>加分项：输出的日志信息中最好能有文件的名字，函数的名字及其所在的行号</p>
-<pre><code>//使用单例模式
-class Mylogger
-{
-public:
-    void warn(const char * msg);
-    void error(const char * msg);
-    void debug(const char * msg);
-    void info(const char * msg);
-
-private:
-    Mylog();
-    ~Mylog();
-private:
-  //......
-};
-
-Mylogger * log = Mylogger::getInstance();
-log-&gt;warn(&quot;hello&quot;);</code></pre></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/Category.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/Priority.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/OstreamAppender.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/PatternLayout.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/FileAppender.hh&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;log4cpp/RollingFileAppender.hh&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> log4cpp;</span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">int2string</span><span class="params">(<span class="keyword">int</span> line)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">ostringstream</span> oss;</span><br><span class="line">    oss &lt;&lt; line;</span><br><span class="line">    <span class="keyword">return</span> oss.str();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> suffix(msg) std::string(msg).append(<span class="meta-string">" ("</span>).append(__FILE__).append(<span class="meta-string">":"</span>).append(__func__).append(<span class="meta-string">":"</span>).append(int2string(__LINE__)).append(<span class="meta-string">")"</span>).c_str()</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLog</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> MyLog *<span class="title">getinstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">nullptr</span> == _p)</span><br><span class="line">        &#123;</span><br><span class="line">            _p = <span class="keyword">new</span> MyLog();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> _p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (_p)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> _p;</span><br><span class="line">        &#125;</span><br><span class="line">        _p = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LogInfo</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _myCategory.info(suffix(msg));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LogError</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _myCategory.error(suffix(msg));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LogWarn</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _myCategory.warn(suffix(msg));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LogDebug</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _myCategory.debug(suffix(msg));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LogCrit</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _myCategory.crit(suffix(msg));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LogNotice</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _myCategory.notice(suffix(msg));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> MyLog *_p;</span><br><span class="line">    Category &amp;_myCategory;</span><br><span class="line">    MyLog()</span><br><span class="line">        : _myCategory(Category::getRoot().getInstance(<span class="string">"mycategory"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        PatternLayout *ptnLayout1 = <span class="keyword">new</span> PatternLayout();</span><br><span class="line">        ptnLayout1-&gt;setConversionPattern(<span class="string">"%d %c (%p) %m%n"</span>);</span><br><span class="line">        PatternLayout *ptnLayout3 = <span class="keyword">new</span> PatternLayout();</span><br><span class="line">        ptnLayout3-&gt;setConversionPattern(<span class="string">"%d %c (%p) %m%n"</span>);</span><br><span class="line"></span><br><span class="line">        RollingFileAppender *rollingFileAppender = <span class="keyword">new</span> RollingFileAppender(</span><br><span class="line">            <span class="string">"rollingFileAppender"</span>,</span><br><span class="line">            <span class="string">"rollingtest.log"</span>,</span><br><span class="line">            <span class="number">1024</span> * <span class="number">1024</span>,</span><br><span class="line">            <span class="number">5</span>);</span><br><span class="line">        rollingFileAppender-&gt;setAppend(ptnLayout3);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出控制</span></span><br><span class="line">        OstreamAppender *ostreamAppender = <span class="keyword">new</span> OstreamAppender(<span class="string">"OstreamAppender"</span>, &amp;<span class="built_in">cout</span>);</span><br><span class="line">        ostreamAppender-&gt;setLayout(ptnLayout1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//建立日志记录器</span></span><br><span class="line">        _myCategory.setPriority(Priority::DEBUG);</span><br><span class="line">        _myCategory.addAppender(ostreamAppender);</span><br><span class="line">        _myCategory.addAppender(rollingFileAppender);</span><br><span class="line">    &#125;</span><br><span class="line">    ~MyLog()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"~MyLog"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        _myCategory.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">MyLog *MyLog::_p = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    MyLog *p1 = MyLog::getinstance();</span><br><span class="line">    MyLog *p2 = MyLog::getinstance();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"p1 = "</span> &lt;&lt; p1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"p2 = "</span> &lt;&lt; p2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    p1-&gt;LogError(<span class="string">"this is error msg"</span>);</span><br><span class="line">    p1-&gt;LogInfo(<span class="string">"this is info msg"</span>);</span><br><span class="line">    p1-&gt;LogWarn(<span class="string">"this is warn msg"</span>);</span><br><span class="line">    p1-&gt;LogNotice(<span class="string">"this is notice msg"</span>);</span><br><span class="line">    p1-&gt;LogCrit(<span class="string">"this is crit msg"</span>);</span><br><span class="line"></span><br><span class="line">    MyLog::destroy();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:%5CUsers%5C65792%5CDesktop%5C%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%5C20190728.png" alt="运行结果"></p>
-
-      
-      
-      
-      
-        <div hidden="hidden"></div>
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/29/day5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-musicTest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -356,6 +267,88 @@ log-&gt;warn(&quot;hello&quot;);</code></pre></li>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/28/article/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-day5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/28/day5/">markdown 测试</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/28/day5/" class="archive-article-date">
+  	<time datetime="2019-07-28T13:51:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>熟悉log4cpp的用法，动手敲代码</li>
+</ol>
+        
+          <a class="article-more-a" href="/2019/07/28/day5/#more">more >></a>
+        
+      
+      
+      
+      
+        <div hidden="hidden"></div>
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/搭建博客//" class="article-tag-list-link color5">搭建博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/28/day5/">展开全文 >></a>
         </p>
       
 
